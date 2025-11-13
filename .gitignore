@@ -8,3 +8,4 @@ vite.config.ts.*
 .env
 *.png
 venv
+transformer_from_scratch
