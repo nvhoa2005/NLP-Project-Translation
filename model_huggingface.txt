@@ -1,0 +1,17 @@
+model_name: google-t5/t5-large
+link: https://huggingface.co/google-t5/t5-large
+
+model_name: Helsinki-NLP/opus-mt-en-vi *
+link: https://huggingface.co/Helsinki-NLP/opus-mt-en-vi
+
+model_name: facebook/nllb-200-3.3B
+link: https://huggingface.co/facebook/nllb-200-3.3B
+
+model_name: google/mt5-large
+link: https://huggingface.co/google/mt5-large
+
+# Ghi chú
+mt5_large: out of memory CUDA
+mt5_small: out of memory CUDA
+facebook/nllb-200-distilled-600M: out of memory CUDA
+facebook/nllb-200-distilled-1.3B: out of memory CUDA

@@ -9,3 +9,5 @@ vite.config.ts.*
 *.png
 venv
 transformer_from_scratch
+__pycache__
+notebook
