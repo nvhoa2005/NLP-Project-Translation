@@ -111,6 +111,38 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.post("/api/local-translate", async (req, res) => {
+    try {
+      const { text } = translateRequestSchema.pick({ text: true }).parse(req.body);
+
+      const hfUrl = "https://nvh1101-my-custom-translator.hf.space/translate";
+
+      console.log(`Forwarding request to Hugging Face: ${hfUrl}`);
+
+      const pythonResponse = await axios.post(
+        hfUrl,
+        { text },
+        { headers: { "Content-Type": "application/json" } }
+      );
+
+      const translation = pythonResponse.data.translation || "";
+
+      res.json({ translation });
+    } catch (error) {
+      console.error("Hugging Face hosted model error:", error);
+      if (error instanceof z.ZodError) {
+        res.status(400).json({ error: "Invalid request data" });
+      } else {
+        // Log chi tiết lỗi để dễ debug
+        if (axios.isAxiosError(error)) {
+             console.error("Axios status:", error.response?.status);
+             console.error("Axios data:", error.response?.data);
+        }
+        res.status(500).json({ error: "Translation model failed to respond" });
+      }
+    }
+  });
+
   app.post("/api/hf-translate", async (req, res) => {
     try {
       const { text } = translateRequestSchema.pick({ text: true }).parse(req.body);
