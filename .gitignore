@@ -11,3 +11,5 @@ venv
 transformer_from_scratch
 __pycache__
 notebook
+*.tar
+data
